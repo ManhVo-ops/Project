@@ -39,9 +39,9 @@ public class paymentController extends HttpServlet {
         for (CartItem item : cart) {
             orderDetail detail = new orderDetail();
             detail.setOrderID(order);
-            detail.setProductID(item.getProductID());
+            detail.setProductID(item.getProduct());
             detail.setQuantity(item.getQuantity());
-            detail.setPrice(item.getProductID().getPrice());
+            detail.setPrice(item.getProduct().getPrice());
             OrderDetailDAO.getInstance().insertOrderDetail(detail);
         }
 

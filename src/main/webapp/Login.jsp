@@ -12,10 +12,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+            integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css" rel="stylesheet">
     <!--Link CSS  -->
+
     <link rel="stylesheet" href="./JSPWeb/CSS/CSS_Login.css">
     <title>Login_Register_Page</title>
 </head>
@@ -50,11 +57,16 @@
                 <a href="./ResetPass.jsp">Bạn Quên Mật Khẩu?</a>
             </div>
             <button type="submit" class="btn">Đăng Nhập</button>
+            <div class="mxh_register">
+                <i onclick="loginFacebook()"  class="fa-brands fa-facebook" style="color: #005eff; font-size: 30px;"></i>
+                <i class="fa-brands fa-google" style="color: #ff0000; font-size: 30px;"></i>
+            </div>
 
             <div class="register">
                 <p>
                     Bạn Chưa Có Tài Khoản?
                     <a href="#" id="switchToRegister"> Đăng Ký </a>
+                    <a><img src=""></a>
                 </p>
             </div>
         </form>
@@ -86,15 +98,41 @@
                 <i class="ri-eye-off-fill" id="ReIcon_Register"></i>
             </div>
             <button type="submit" class="btn">Tạo Tài Khoản</button>
+
             <div class="login">
                 <p>
                     Bạn Đã Có Tài Khoản?
                     <a href="#" id="switchToLogin" > Đăng nhập </a>
+
                 </p>
+
+
             </div>
         </form>
     </div>
+
 </div>
 <script src="./JSPWeb/js/Hide_Password.js"></script>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : 'YOUR_APP_ID', // Thay YOUR_APP_ID bằng App ID của bạn
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v18.0' // Phiên bản API mới nhất
+        });
+
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
 </body>
 </html>
