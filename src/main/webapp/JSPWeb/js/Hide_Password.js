@@ -53,5 +53,51 @@ switchToLogin.addEventListener('click', (e) => {
     LoginAccess.classList.remove('active');
 });
 
+function loginFacebook() {
+    FB.login(function(response) {
+        if (response.authResponse) {
+            console.log('Đăng nhập thành công!', response);
+            getUserInfo();
+        } else {
+            console.log('Người dùng từ chối đăng nhập.');
+        }
+    }, {scope: 'email,public_profile'}); // Yêu cầu quyền truy cập email và thông tin công khai
+}
+
+// Lấy thông tin người dùng sau khi đăng nhập
+function getUserInfo() {
+    FB.api('/me', {fields: 'id, name, email, picture'}, function (response) {
+        console.log('Thông tin người dùng:', response);
+
+        // Chuẩn bị dữ liệu để gửi
+        const userData = {
+            id: response.id,
+            name: response.name,
+            email: response.email,
+            picture: response.picture.data.url
+        };
+
+        // Gửi dữ liệu qua Servlet bằng Fetch API
+        fetch("loginFacebook", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log("Phản hồi từ server:", data);
+            })
+            .catch(error => console.error("Lỗi khi gửi dữ liệu:", error));
+
+        // Hiển thị thông tin lên giao diện
+        document.getElementById('userInfo').innerHTML =
+            `<p>Chào, ${response.name}!</p>
+             <p>Email: ${response.email}</p>
+         
+}    <img src="${response.picture.data.url}" alt="Avatar">`;
+    });
+}
 
 
