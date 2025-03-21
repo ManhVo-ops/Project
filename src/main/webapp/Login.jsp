@@ -51,6 +51,8 @@
                 <input name="password" type="password" id="Pass_Login" placeholder="Mật Khẩu" required>
                 <i class="ri-eye-off-fill" id="Icon_Login" style="right: 5%; cursor: pointer;"></i>
             </div>
+            <!-- Google reCAPTCHA -->
+            <div class="g-recaptcha" data-sitekey="6LclbPsqAAAAAFBNZP1-Gv6O4DmJXxRrWLrtInpX"></div>
 
             <div class="remember_forgot">
                 <label><input type="checkbox">Nhớ tôi</label>
@@ -71,6 +73,8 @@
             </div>
         </form>
     </div>
+    <!-- Thêm script reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <div class="wrapper_Register">
         <form action="login">
